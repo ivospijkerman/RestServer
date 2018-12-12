@@ -3,28 +3,39 @@ package endpoint;
 import controller.BookController;
 import model.BookModel;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import java.util.Collection;
 
 @Path("/books")
 public class Book {
 
-    public BookModel get(int id) {
+    @GET
+    @Path("/{id}")
+    public BookModel get(@PathParam("id") int id) {
         return BookController.INSTANCE.getById(id);
     }
 
     @GET
-    @Produces("text/plain")
-    public String deleteme() {
-        return "Hoi";
-    }
-
-    @GET
     @Path("/all")
-    @Produces("application/json")
     public Collection<BookModel> getAll() {
         return BookController.INSTANCE.getAll();
+    }
+
+    @POST
+    @Path("/")
+    public BookModel create(BookModel in) {
+        return BookController.INSTANCE.create(in);
+    }
+
+    @PUT
+    @Path("/{id}")
+    public BookModel update(@PathParam("id") int id, BookModel in) {
+        return BookController.INSTANCE.update(id, in);
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public boolean delete(@PathParam("id") int id) {
+        return BookController.INSTANCE.remove(id);
     }
 }

@@ -23,7 +23,7 @@ public class BookController {
 
     public BookModel create(BookModel in) {
         // TODO make this perform better on large datasets
-        int nextId = 1;
+        int nextId = 0;
         for (BookModel book : getAll()) {
             if (book.id > nextId)
                 nextId = book.id;
@@ -38,9 +38,12 @@ public class BookController {
 
     public BookModel update(int id, BookModel in) {
         BookModel old = data.get(id);
-        old.text = in.text;
-        old.title = in.title;
-        old.author = in.author;
+        if (in.text != null)
+            old.text = in.text;
+        if (in.title != null)
+            old.title = in.title;
+        if (in.author != null)
+            old.author = in.author;
         return old;
     }
 
