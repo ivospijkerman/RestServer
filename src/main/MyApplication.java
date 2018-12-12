@@ -1,6 +1,7 @@
 package main;
 
-import resource.HelloWorld;
+import endpoint.Book;
+import endpoint.HelloWorld;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -14,6 +15,7 @@ public class MyApplication extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
         classes.add(HelloWorld.class);
+        classes.add(Book.class);
         return classes;
 
     }
