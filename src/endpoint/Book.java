@@ -10,19 +10,17 @@ import java.util.Collection;
 public class Book {
 
     @GET
+    public Collection<BookModel> getAll() {
+        return BookController.INSTANCE.getAll();
+    }
+
+    @GET
     @Path("/{id}")
     public BookModel get(@PathParam("id") int id) {
         return BookController.INSTANCE.getById(id);
     }
 
-    @GET
-    @Path("/all")
-    public Collection<BookModel> getAll() {
-        return BookController.INSTANCE.getAll();
-    }
-
     @POST
-    @Path("/")
     public BookModel create(BookModel in) {
         return BookController.INSTANCE.create(in);
     }
